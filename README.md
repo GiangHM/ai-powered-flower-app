@@ -20,7 +20,6 @@ A full-stack chat application built with .NET Aspire, Semantic Kernel, and GitHu
 - [Features](#features)
 - [Getting Started](#getting-started)
   - [Prerequisites for running experiments](#prerequisites-for-running-experiments)
-  - [Try it out (experimentation phase)](#try-it-out-experimentation-phase)
 - [Local Development](#local-development)
   - [Prerequisites for local development](#prerequisites-for-local-development)
 - [Sample Product Data](#sample-product-data)
@@ -37,18 +36,34 @@ The application consists of 2 main projects:
 
 - `Function App`: An Azure Function App responsible for initializing the vector database used to store flower information. It also updates the database whenever a new flower is created or updated
   
+### Keyword search
+![msedge_nDPHtDUdu4](https://github.com/user-attachments/assets/3b604646-fad4-49ba-bccd-505d201176b6)
 
 ### Semantic search function
 
+#### Overiview architecture
+<img width="636" height="346" alt="msedge_CWRklRHv0F" src="https://github.com/user-attachments/assets/4d9fe4db-b5cc-4d77-bccb-d8345028b8c3" />
+
+
+#### Show case the semantic search
+
+![msedge_GG9dlEmvAL](https://github.com/user-attachments/assets/a1367b59-340f-4b8f-b230-8df0b8135983)
+
+
 ### Writer Agent function
-![chrome_YHBv7cOHkd](https://github.com/user-attachments/assets/a5ae84c7-17f1-4582-9cd9-04c6227defaa)
+
+#### Overview architecture
+<img width="645" height="387" alt="msedge_R6B2rpWP9V" src="https://github.com/user-attachments/assets/73307e6f-6cdd-46c3-8bfe-98079a63e10c" />
+
+
+#### Showcase the writer agent 
+![msedge_tfGFAbS2wJ](https://github.com/user-attachments/assets/90431b5b-6444-4d43-adc3-ae33edcf5bef)
+
 
 ### Aspire montinoring
 <img width="954" height="450" alt="chrome_akR4mtAUKy" src="https://github.com/user-attachments/assets/a6aa8505-a8a4-4d47-8cdd-ec673a12a34d" />
 
 <img width="960" height="456" alt="chrome_8bMELPvfyM" src="https://github.com/user-attachments/assets/96091356-e260-45b9-8db9-de511d965aae" />
-
-
 
 
 ## Getting Started
@@ -71,7 +86,6 @@ The application consists of 2 main projects:
 If using Visual Studio, open the solution file `flowershopbackend.sln` and launch/debug the `FlowerShop.AppHost` project.
 
 For more information on local provisioning of Aspire applications, refer to the [Aspire Local Provisioning Guide](https://learn.microsoft.com/en-us/dotnet/aspire/deployment/azure/local-provisioning).
-
 
 Example to add into a `appsettings.Development.json` in the `FlowerShop.AppHost` directory:
 
