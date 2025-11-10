@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "FlowerShop.VectorInit": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7112",
+      "launchBrowser": false
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "profiles": {
+    "https": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DOTNET_ENVIRONMENT": "Development",
+        "ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL": "https://localhost:21281",
+        "ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:22239",
+        "ASPIRE_CONTAINER_RUNTIME": "podman"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:17290;http://localhost:15005"
+    },
+    "http": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DOTNET_ENVIRONMENT": "Development",
+        "ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:19204",
+        "ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:20043"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:15005"
+    }
+  },
+  "$schema": "https://json.schemastore.org/launchsettings.json"
+}
