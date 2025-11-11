@@ -28,14 +28,16 @@ A full-stack chat application built with .NET Aspire, Semantic Kernel, and GitHu
 
 ## Features
 
-The application consists of 2 main projects:
+The application consists of 2 main projects: 
 
 - `WebApi`: A .NET-based Web API that facilitates semantic search and chat interactions, leveraging .NET Aspire and Semantic Kernel. It exposes endpoints that enable seamless communication between the chat frontend and backend..
   
 - `VueApp`: A Vue.js application that serves as the user interface for creating new flowers and interacting with the writer agent. It also supports semantic search functionality for exploring flower data.
 
 - `Function App`: An Azure Function App responsible for initializing the vector database used to store flower information. It also updates the database whenever a new flower is created or updated
-  
+
+Note: _The image data is sourced from the internet._
+
 ### Keyword search
 ![msedge_nDPHtDUdu4](https://github.com/user-attachments/assets/3b604646-fad4-49ba-bccd-505d201176b6)
 
