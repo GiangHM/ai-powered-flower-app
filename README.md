@@ -115,6 +115,7 @@ Then trigger the function: "FlowerVectorDataInit" to init data for vector databa
 - [Semantic Kernel Documentation](https://learn.microsoft.com/en-us/semantic-kernel/overview/)
 - [Semantic Kernel Agent Framework Documentation](https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/?pivots=programming-language-csharp)
 - [Aspire Documentation](https://learn.microsoft.com/en-us/dotnet/aspire/)
+- The image data is sourced from the internet.
 
 ## License
 
