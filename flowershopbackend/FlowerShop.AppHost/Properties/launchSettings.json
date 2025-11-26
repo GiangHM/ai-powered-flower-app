@@ -8,7 +8,9 @@
         "DOTNET_ENVIRONMENT": "Development",
         "ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL": "https://localhost:21281",
         "ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:22239",
-        "ASPIRE_CONTAINER_RUNTIME": "podman"
+        "ASPIRE_CONTAINER_RUNTIME": "podman",
+        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "https://localhost:21220",
+        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:22220"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:17290;http://localhost:15005"
@@ -20,7 +22,8 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DOTNET_ENVIRONMENT": "Development",
         "ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:19204",
-        "ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:20043"
+        "ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:20043",
+        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:22065"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:15005"

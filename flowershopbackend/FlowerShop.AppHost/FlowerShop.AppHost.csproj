@@ -1,22 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <Sdk Name="Aspire.AppHost.Sdk" Version="9.3.1" />
-
+  <Sdk Name="Aspire.AppHost.Sdk" Version="13.0.0" />
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <UserSecretsId>00e0ece6-7ec2-4bb0-afe7-adc44e22315a</UserSecretsId>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.2" />
-    <PackageReference Include="Aspire.Hosting.Azure.Functions" Version="9.5.2-preview.1.25522.3" />
-    <PackageReference Include="Aspire.Hosting.Kafka" Version="9.5.2" />
-    <PackageReference Include="Aspire.Hosting.NodeJs" Version="9.5.2" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="13.0.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.Functions" Version="13.0.0-preview.1.25560.3" />
+    <PackageReference Include="Aspire.Hosting.JavaScript" Version="13.0.0" />
+    <PackageReference Include="Aspire.Hosting.Kafka" Version="13.0.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\FlowerShop.Api\FlowerShop.Api.csproj" />
     <ProjectReference Include="..\FlowerShop.VectorInit\FlowerShop.VectorInit.csproj" />
@@ -25,9 +21,8 @@
     <ItemGroup>
       <PackageJsons Include="../../../flowershop/flowershopspa/myflowershop/package.json" />
     </ItemGroup>
-
     <!-- Install npm packages if node_modules is missing -->
     <Message Importance="Normal" Text="Installing npm packages for %(PackageJsons.RelativeDir)" Condition="!Exists('%(PackageJsons.RootDir)%(PackageJsons.Directory)/node_modules')" />
-    <Exec Command="npm install" WorkingDirectory="%(PackageJsons.RootDir)%(PackageJsons.Directory)" Condition="!Exists('%(PackageJsons.RootDir)%(PackageJsons.Directory)/node_modules')" />
+    <!--<Exec Command="npm install" WorkingDirectory="%(PackageJsons.RootDir)%(PackageJsons.Directory)" Condition="!Exists('%(PackageJsons.RootDir)%(PackageJsons.Directory)/node_modules')" />-->
   </Target>
 </Project>
