@@ -31,10 +31,12 @@ static IResourceBuilder<KafkaServerResource> ConfigKafKaResource(IDistributedApp
 
 static EndpointReference ConfigChromaResource(IDistributedApplicationBuilder builder)
 {
+    string otlpEndpoint = builder.Configuration["ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL"];
+
     var chromaDB = builder.AddContainer("chroma", "chromadb/chroma")
         .WithHttpEndpoint(port: 8000, targetPort: 8000, name: "chromaendpoint")
         .WithLifetime(ContainerLifetime.Persistent)
-        .WithEnvironment("OTEL_EXPORTER_OTLP_ENDPOINT", "https://localhost:21281/")
+        .WithEnvironment("OTEL_EXPORTER_OTLP_ENDPOINT", otlpEndpoint ?? "https://localhost:21281/")
         .WithEnvironment("OTEL_SERVICE_NAME", "chromadb")
         .PublishAsContainer();
 
@@ -62,12 +64,13 @@ static IResourceBuilder<ProjectResource> ConfigShopApi(IDistributedApplicationBu
 
 static void ConfigShopWebApp(IDistributedApplicationBuilder builder, IResourceBuilder<ProjectResource> flowershopapi)
 {
-    builder.AddNpmApp("flowerspa", "../../../flowershop/flowershopspa/myflowershop")
+    string otlpEndpoint = builder.Configuration["ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL"];
+
+    builder.AddViteApp("flowerspa", "../../../flowershop/flowershopspa/myflowershop")
         .WithReference(flowershopapi)
-        .WithEnvironment("OTEL_EXPORTER_OTLP_ENDPOINT", "https://localhost:21281/")
+        .WithEnvironment("OTEL_EXPORTER_OTLP_ENDPOINT", otlpEndpoint ?? "https://localhost:21281/")
         .WithEnvironment("OTEL_SERVICE_NAME", "flowerspa")
         .WaitFor(flowershopapi)
-        .WithHttpEndpoint(env: "PORT")
         .WithExternalHttpEndpoints()
         .PublishAsDockerFile();
 }

@@ -7,7 +7,6 @@ using FlowerShop.Infrastructure.AIServices;
 using FlowerShop.Infrastructure.Configurations;
 using FlowerShop.Infrastructure.Persistence;
 using FlowerShop.Infrastructure.VectorDb;
-using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -52,24 +51,6 @@ builder.Services.AddInfrastructure(options =>
 
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
-
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "Flower shop API",
-        Version = "v1",
-        Description = "Demo API for AI enabled app learning"
-    });
-
-    // Include XML comments
-    var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-    if (File.Exists(xmlPath))
-    {
-        c.IncludeXmlComments(xmlPath);
-    }
-});
 
 builder.Services
     .AddControllers()
@@ -118,19 +99,15 @@ using (var scope = app.Services.CreateScope())
 }
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     //https://localhost:7204/swagger/index.html
-    app.UseSwagger();
+    app.MapOpenApi();
+
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Restaurant booking v1");
-        c.RoutePrefix = "swagger"; // Swagger UI at root
+        c.SwaggerEndpoint("/openapi/v1.json", "Flower API");
     });
 }
 
