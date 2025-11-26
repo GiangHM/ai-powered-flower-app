@@ -31,7 +31,7 @@ static IResourceBuilder<KafkaServerResource> ConfigKafKaResource(IDistributedApp
 
 static EndpointReference ConfigChromaResource(IDistributedApplicationBuilder builder)
 {
-    string otlpEndpoint = builder.Configuration["ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL"];
+    string? otlpEndpoint = builder.Configuration["ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL"];
 
     var chromaDB = builder.AddContainer("chroma", "chromadb/chroma")
         .WithHttpEndpoint(port: 8000, targetPort: 8000, name: "chromaendpoint")
