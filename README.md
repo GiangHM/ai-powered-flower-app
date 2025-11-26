@@ -79,7 +79,7 @@ Note: _The image data is sourced from the internet._
 
 ### Prerequisites for local development
 
-- .NET 9 SDK
+- .NET 10 SDK
 - VSCode or Visual Studio 2022 17.12
 - [Node.js 22](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
