@@ -72,14 +72,14 @@ Note: _The image data is sourced from the internet._
 
 ### Prerequisites for running experiments
 
-- .NET 9 SDK
+- .NET 10 SDK
 - VSCode or Visual studio
 
 ## Local Development
 
 ### Prerequisites for local development
 
-- .NET 10 SDK
+- .NET 9 SDK
 - VSCode or Visual Studio 2022 17.12
 - [Node.js 22](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
@@ -105,6 +105,45 @@ Example to add into a `appsettings.Development.json` in the `FlowerShop.AppHost`
 }
 ```
 
+
+## Database Migrations
+
+The project uses **EF Core Migrations** for schema management. Migrations are stored in `FlowerShop.Infrastructure/Migrations/` and are applied automatically on startup via `MigrateAsync()`.
+
+### Applying migrations (automatic)
+
+Migrations are applied automatically every time the API starts. No manual steps are required in normal operation.
+
+### Creating a new migration
+
+When the domain model changes, generate a new migration from the solution root:
+
+```bash
+dotnet ef migrations add <MigrationName> \
+  --project flowershopbackend/FlowerShop.Infrastructure \
+  --startup-project flowershopbackend/FlowerShop.Api \
+  --output-dir Migrations
+```
+
+### Applying migrations manually
+
+To apply pending migrations to a target database without starting the API:
+
+```bash
+dotnet ef database update \
+  --project flowershopbackend/FlowerShop.Infrastructure \
+  --startup-project flowershopbackend/FlowerShop.Api
+```
+
+Set the `ConnectionStrings__sql` environment variable (or update `appsettings.Development.json`) to point to the target database before running the command.
+
+### Rolling back a migration
+
+```bash
+dotnet ef database update <PreviousMigrationName> \
+  --project flowershopbackend/FlowerShop.Infrastructure \
+  --startup-project flowershopbackend/FlowerShop.Api
+```
 
 ## Sample Product Data
 You should feed data for your database after migrating. Sample data (sampledata/sqldata.sql)
