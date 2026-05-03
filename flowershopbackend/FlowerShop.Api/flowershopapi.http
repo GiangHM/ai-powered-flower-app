@@ -1,6 +1,0 @@
-@flowershopapi_HostAddress = http://localhost:5291
-
-GET {{flowershopapi_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
