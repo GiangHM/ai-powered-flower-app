@@ -11,11 +11,11 @@ products:
 ---
 -->
 
-# Flower shop: Working with Semantic search, Chat completion service and Agents using Semantic Kernel and .NET Aspire (C#)
+# Flower shop: A simple e-commerce, working with Vue, Microsfot Agent Framework and .NET Aspire (C#)
 
 This project showcases what I've learned through self-study in generative AI 
 
-A full-stack chat application built with .NET Aspire, Semantic Kernel, and GitHub models, featuring a Vue + Vite frontend. It integrates GitHub-hosted language models and Google Search for enhanced responses.
+A full-stack chat application built with .NET Aspire, Microsoft Agent Framework, and GitHub models, featuring a Vue + Vite frontend. It integrates GitHub-hosted language models and Google Search for enhanced responses.
 
 - [Features](#features)
 - [Getting Started](#getting-started)
@@ -30,7 +30,7 @@ A full-stack chat application built with .NET Aspire, Semantic Kernel, and GitHu
 
 The application consists of 2 main projects: 
 
-- `WebApi`: A .NET-based Web API that facilitates semantic search and chat interactions, leveraging .NET Aspire and Semantic Kernel. It exposes endpoints that enable seamless communication between the chat frontend and backend..
+- `WebApi`: A .NET-based Web API that facilitates semantic search and chat interactions, leveraging .NET Aspire and Microsoft Agent Framework. It exposes endpoints that enable seamless communication between the chat frontend and backend..
   
 - `VueApp`: A Vue.js application that serves as the user interface for creating new flowers and interacting with the writer agent. It also supports semantic search functionality for exploring flower data.
 
@@ -51,11 +51,25 @@ Note: _The image data is sourced from the internet._
 
 ![msedge_GG9dlEmvAL](https://github.com/user-attachments/assets/a1367b59-340f-4b8f-b230-8df0b8135983)
 
+### Sales Assistant
+
+#### Overview architecture
+<img width="560" height="230" alt="SalesAssistant_Arch" src="https://github.com/user-attachments/assets/41f4983c-3782-4d5a-aea2-67967746cd2a" />
+
+#### Showcase the sales assistant
+<img width="1886" height="940" alt="HomePage" src="https://github.com/user-attachments/assets/c2ae0463-c878-4900-987a-b34be51688b4" />
+
+
+### Admin page
+<img width="1882" height="763" alt="AdminPage" src="https://github.com/user-attachments/assets/101eeeda-cb81-4414-82f9-555501e5c491" />
+
 
 ### Writer Agent function
 
 #### Overview architecture
 <img width="645" height="387" alt="msedge_R6B2rpWP9V" src="https://github.com/user-attachments/assets/73307e6f-6cdd-46c3-8bfe-98079a63e10c" />
+
+<img width="796" height="629" alt="WriterFlow" src="https://github.com/user-attachments/assets/fcf98893-7f09-451f-adfe-17e6f13f0e95" />
 
 
 #### Showcase the writer agent 
@@ -67,12 +81,14 @@ Note: _The image data is sourced from the internet._
 
 <img width="960" height="456" alt="chrome_8bMELPvfyM" src="https://github.com/user-attachments/assets/96091356-e260-45b9-8db9-de511d965aae" />
 
+<img width="1882" height="895" alt="Observability_Sales_Assistant_Trace" src="https://github.com/user-attachments/assets/7b529641-b134-4807-b7f4-e5fa5044da88" />
+
 
 ## Getting Started
 
 ### Prerequisites for running experiments
 
-- .NET 9 SDK
+- .NET 10 SDK
 - VSCode or Visual studio
 
 ## Local Development
@@ -94,17 +110,57 @@ Example to add into a `appsettings.Development.json` in the `FlowerShop.AppHost`
 ``` json
 "Parameters": {
   "GithubToken": "Replace this with your OpenAI Api Key",
-  "ChatModelId": "",
-  "EmbeddingModel": "",
-  "Endpoint": "https://models.inference.ai.azure.com",
+  "ChatModelId": "gpt-4o-mini",
+  "EmbeddingModel": "text-embedding-3-small",
+  "Endpoint": "https://models.inference.ai.azure.com"
   "GoogleApiKey": "",
-  "GoogleSearchEngineId": ""
+  "GoogleSearchEngineId": "",
+  "VisionModelId": "gpt-4o"
 },
 "ConnectionStrings": {
   "sql": ""
 }
 ```
 
+
+## Database Migrations
+
+The project uses **EF Core Migrations** for schema management. Migrations are stored in `FlowerShop.Infrastructure/Migrations/` and are applied automatically on startup via `MigrateAsync()`.
+
+### Applying migrations (automatic)
+
+Migrations are applied automatically every time the API starts. No manual steps are required in normal operation.
+
+### Creating a new migration
+
+When the domain model changes, generate a new migration from the solution root:
+
+```bash
+dotnet ef migrations add <MigrationName> \
+  --project flowershopbackend/FlowerShop.Infrastructure \
+  --startup-project flowershopbackend/FlowerShop.Api \
+  --output-dir Migrations
+```
+
+### Applying migrations manually
+
+To apply pending migrations to a target database without starting the API:
+
+```bash
+dotnet ef database update \
+  --project flowershopbackend/FlowerShop.Infrastructure \
+  --startup-project flowershopbackend/FlowerShop.Api
+```
+
+Set the `ConnectionStrings__sql` environment variable (or update `appsettings.Development.json`) to point to the target database before running the command.
+
+### Rolling back a migration
+
+```bash
+dotnet ef database update <PreviousMigrationName> \
+  --project flowershopbackend/FlowerShop.Infrastructure \
+  --startup-project flowershopbackend/FlowerShop.Api
+```
 
 ## Sample Product Data
 You should feed data for your database after migrating. Sample data (sampledata/sqldata.sql)
@@ -114,9 +170,8 @@ Then trigger the function: "FlowerVectorDataInit" to init data for vector databa
 
 ## Resources
 
-- [Semantic Kernel Documentation](https://learn.microsoft.com/en-us/semantic-kernel/overview/)
-- [Semantic Kernel Agent Framework Documentation](https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/?pivots=programming-language-csharp)
 - [Aspire Documentation](https://learn.microsoft.com/en-us/dotnet/aspire/)
+- [Microsoft Agent Framework](https://learn.microsoft.com/en-us/agent-framework/overview/?pivots=programming-language-csharp)
 - The image data is sourced from the internet.
 
 ## License
